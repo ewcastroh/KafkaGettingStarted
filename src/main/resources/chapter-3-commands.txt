@@ -106,3 +106,77 @@
             --delete \
             --topic kafka.learning.alerts
 
+
+## Exploring ZooKeeper
+
+## Logging into the ZooKeeper Container
+
+        Unix
+        docker exec -it zookeeper /bin/bash
+
+        Windows
+        docker exec -it zookeeper //bin/bash
+
+## Navigate to the ZooKeeper Scripts directory
+
+        cd /opt/bitnami/zookeeper/bin
+
+## Run ZooKeeper Client
+
+        ./zkCli.sh
+
+## Show all the available nodes
+
+        ls /
+        [admin, brokers, cluster, config, consumers, controller, controller_epoch, feature, isr_
+        change_notification, latest_producer_id_block, log_dir_event_notification, zookeeper]
+
+## Show all brokers registered with ZooKeeper
+
+        ls /brokers/ids
+        [1001]
+
+## Show further details about a specific broker. Information used by brokers to identify other brokers into the cluster.
+
+        get /brokers/ids/1001
+        {"listener_security_protocol_map":{"INTERNAL":"PLAINTEXT","EXTERNAL":"PLAINTEXT"},"endpo
+        ints":["INTERNAL://kafka:29092","EXTERNAL://localhost:9092"],"jmx_port":-1,"features":{}
+        ,"host":"kafka","timestamp":"1672239568591","port":29092,"version":5}
+
+## Show list of all available topics
+
+        ls /brokers/topics
+        [__consumer_offsets, kafka.learning.tweets]
+
+## Show details about a topic
+
+        get /brokers/topics/kafka.learning.tweets
+        {"removing_replicas":{},"partitions":{"0":[1001]},"topic_id":"BBKg6LjIRFKejZOu5U_q7Q","a
+        dding_replicas":{},"version":3}
+
+## Exit from ZooKeeper terminal
+
+        quit
+
+## Exit from Container
+
+        exit
+
+## Shows Kafka process running in the system (Log in to Kafka Container)
+
+        ps -ef |grep kafka
+
+
+## Show Kafka configuration
+
+        cat /opt/bitnami/kafka/config/server.properties
+
+## Explore Kafka data log directory as configured in server.properties file
+
+        cd /bitnami/kafka/data
+        ls
+        cd kafka.learning.tweets-0/
+
+## Show internal content of messages in the topic
+
+        cat 00000000000000000000.log
