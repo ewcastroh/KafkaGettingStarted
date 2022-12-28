@@ -14,7 +14,9 @@
 
         cd /opt/bitnami/kafka/bin
 
-## Creating new Topics
+## Creating new Topics inside /opt/bitnami/kafka/bin
+
+### Newer versions(2.2+) of Kafka no longer requires ZooKeeper connection string [--zookeeper localhost:2181]
 
         ./kafka-topics.sh \
             --zookeeper zookeeper:2181 \
@@ -25,6 +27,22 @@
 
         ./kafka-topics.sh \
             --zookeeper zookeeper:2181 \
+            --create \
+            --topic kafka.learning.alerts \
+            --partitions 1 \
+            --replication-factor 1
+
+### Instead, add Kafka Broker [--bootstrap-server localhost:9092] connection string.
+
+        ./kafka-topics.sh \
+            --bootstrap-server localhost:9092 \
+            --create \
+            --topic kafka.learning.tweets \
+            --partitions 1 \
+            --replication-factor 1
+
+        ./kafka-topics.sh \
+            --bootstrap-server localhost:9092 \
             --create \
             --topic kafka.learning.alerts \
             --partitions 1 \
