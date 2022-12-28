@@ -1,3 +1,4 @@
+#Exercises
 
 ## Creating the Topic
 
@@ -8,10 +9,22 @@
             --partitions 2 \
             --replication-factor 1
 
+        ./kafka-topics.sh \
+            --bootstrap-server localhost:9092 \
+            --create \
+            --topic kafka.usecase.students \
+            --partitions 2 \
+            --replication-factor 1
+
 ## Describe the Topic
 
         ./kafka-topics.sh \
             --zookeeper zookeeper:2181 \
+            --topic kafka.usecase.students \
+            --describe
+
+        ./kafka-topics.sh \
+            --bootstrap-server localhost:9092 \
             --topic kafka.usecase.students \
             --describe
 
