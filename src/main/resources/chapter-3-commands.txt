@@ -4,7 +4,11 @@
 
 ## Logging into the Kafka Container
 
+        Unix
         docker exec -it kafka-broker /bin/bash
+
+        Windows
+        docker exec -it kafka-broker //bin/bash
 
 ## Navigate to the Kafka Scripts directory
 
